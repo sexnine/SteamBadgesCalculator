@@ -26,6 +26,7 @@ class wait_for_the_attribute_value(object):
 
 def main():
     driver.get("https://steamcommunity.com/login/")
+    print("Please sign into Steam, you have 180 seconds to do so.")
 
     try:
         WebDriverWait(driver, timeout=180, poll_frequency=1).until(wait_for_the_attribute_value((By.ID, "auth_message_success"), "style", ""))

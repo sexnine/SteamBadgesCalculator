@@ -1,12 +1,9 @@
-try:
-    import yaml
-    import pickle
-    from selenium import webdriver
-    import time
-    import math
-except:
-    print("Hmm... couldn't load all the modules, are they all installed?  Run \n\npip install -r requirements.txt\n\nto make sure you have all the modules installed.\n\n")
-    exit(0)
+import yaml
+import pickle
+from selenium import webdriver
+import time
+import math
+
 
 config = None
 
@@ -72,7 +69,13 @@ def main():
     print("Loading home page")
     driver.get("https://steamcommunity.com")
     print("Adding cookies and refreshing page")
-    cookies = pickle.load(open("data/cookies.pkl", "rb"))
+    try:
+        cookies = pickle.load(open("data/cookies.pkl", "rb"))
+    except FileNotFoundError:
+        print("Couldn't find cookies, was it deleted?  Run login.py to login before running this file.")
+        driver.quit()
+        exit(0)
+
     for cookie in cookies:
         driver.add_cookie(cookie)
     driver.get("https://steamcommunity.com")

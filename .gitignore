@@ -2,7 +2,8 @@
 .idea/
 
 # App specific
-data/
+data/*
+!data/README
 chromedriver.exe
 results.html
 debug.log
