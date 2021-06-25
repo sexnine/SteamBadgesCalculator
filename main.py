@@ -78,11 +78,11 @@ def main():
 
     for cookie in cookies:
         driver.add_cookie(cookie)
-    driver.get("https://steamcommunity.com")
+    driver.get("https://steamcommunity.com/?l=english")
 
     print("Getting list of all badges...")
     try:
-        driver.get(driver.find_elements_by_xpath("//*[contains(text(), 'View profile')]")[0].get_attribute("href") + "badges/")
+        driver.get(driver.find_elements_by_xpath("//*[contains(text(), 'View profile')]")[0].get_attribute("href") + "badges/?l=english")
     except:
         print("Couldn't navigate to your badges...  Are you logged in?  Make sure to log in using login.py")
         driver.quit()
@@ -97,7 +97,7 @@ def main():
             if badge.find_element_by_class_name("progress_info_bold").text != "No card drops remaining":
                 continue
             badge_link = badge.find_element_by_class_name("badge_row_overlay").get_attribute("href")
-            badge_links.append(badge_link)
+            badge_links.append(badge_link + "?l=english")
         except:
             err += 1
             continue
